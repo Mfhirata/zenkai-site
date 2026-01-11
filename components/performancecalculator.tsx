@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { getPerformanceEstimate } from '../services/gemini';
 import { PerformanceData } from '../types';
-import { LogoIcon } from './logo.tsx';
+import { LogoIcon } from './Logo.tsx';
 
 export const WhatsAppIcon = ({ className = "w-5 h-5" }: { className?: string }) => (
   <svg className={className} fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
