@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { useInView } from '../hooks/useInView';
+import { useInView } from '../hooks/useinview';
 
 const ShieldIcon = () => (
   <svg className="w-8 h-8 md:w-10 md:h-10 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="1.5">

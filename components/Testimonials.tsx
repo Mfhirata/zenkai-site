@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect, useCallback } from 'react';
-import { useInView } from '../hooks/useInView';
+import { useInView } from '../hooks/useinview';
 
 interface Testimonial {
   id: number;

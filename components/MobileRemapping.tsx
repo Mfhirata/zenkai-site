@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { useInView } from '../hooks/useInView';
+import { useInView } from '../hooks/useinview';
 
 const PortugalFlag = () => (
   <svg className="w-10 h-10 rounded shadow-lg border border-white/10" viewBox="0 0 600 400">
