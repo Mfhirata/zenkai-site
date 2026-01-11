@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import Logo from './logo.tsx';
+import Logo from './Logo.tsx';
 import { Page } from '../app.tsx';
 
 interface HeaderProps {
