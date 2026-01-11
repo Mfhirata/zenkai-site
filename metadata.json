@@ -1,0 +1,8 @@
+{
+  "name": "Zenkai - Eletrônica Automotiva",
+  "description": "Landing page de alta performance para serviços de remapeamento de centralinas, com estimador de performance via IA e chat especializado.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ]
+}
