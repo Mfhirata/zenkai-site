@@ -12,7 +12,7 @@ import BackToTop          from './components/BackToTop.tsx';
 import CookieConsent      from './components/CookieConsent.tsx';        
 import TuvStandards       from './components/TuvStandards.tsx';    
 import Terms              from './components/Terms.tsx';              
-import { useInView }      from './hooks/useInView.ts';                
+import { useInView }      from './hooks/useinview.ts';                
 
 export type Page = 'home' | 'services' | 'performance' | 'history' | 'contact' | 'dsg-tuning' | 'tuv' | 'terms';
 
