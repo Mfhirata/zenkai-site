@@ -4,7 +4,7 @@ import Hero               from './components/Hero.tsx';
 import Services, { services } from './components/Services.tsx';        
 import WhyChooseUs        from './components/WhyChooseUs.tsx';        
 import Testimonials       from './components/Testimonials.tsx';      
-import PerformanceCalculator from './components/PerformanceCalculator.tsx';
+import PerformanceCalculator from './components/performancecalculator.tsx';
 import TuningChat         from './components/TuningChat.tsx';           
 import Footer             from './components/footer.tsx';               
 import MobileRemapping    from './components/MobileRemapping.tsx';    
