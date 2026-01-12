@@ -1,0 +1,10 @@
+
+# Configurações básicas do build (já devem estar no dashboard, mas bom confirmar)
+[build]
+  command = "npm run build"   # ou o teu comando de build
+  publish = "dist"            # pasta do Vite
+
+# Plugin Visual Editor atualizado para latest
+[[plugins]]
+  package = "@netlify/plugin-visual-editor"
+  version = "latest"          # puxa a versão mais recente e estável
