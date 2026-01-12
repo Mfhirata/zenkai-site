@@ -8,17 +8,17 @@ export default defineStackbitConfig({
   buildCommand: 'npm run build',
   publishDir: 'dist',
 
-  // Content source simples (objeto direto, sem new GitContentSource)
-  contentSources: [
-    {
-      type: 'git-cms',
-      rootPath: 'content',  // pasta com os JSONs
-      repo: 'Mfhirata/zenkai-site',
-      branch: 'preview'
-    }
-  ],
+  // Comenta ou remove esta seção por agora (resolve o TypeError)
+  // contentSources: [
+  //   {
+  //     type: 'git-cms',
+  //     rootPath: 'content',
+  //     repo: 'Mfhirata/zenkai-site',
+  //     branch: 'preview'
+  //   }
+  // ],
 
-  // Modelos de conteúdo
+  // Mantém os models (o editor usa isso para inline mesmo sem source full)
   models: [
     {
       name: 'home',
@@ -33,7 +33,6 @@ export default defineStackbitConfig({
     }
   ],
 
-  // Liga o model à rota /
   pageModels: ['home'],
   mapModelsToPages: (model) => {
     if (model.name === 'home') return { path: '/' };
