@@ -14,15 +14,9 @@ import TuvStandards from './components/TuvStandards.tsx';
 import Terms from './components/Terms.tsx';
 import { useInView } from './hooks/useinview.ts';
 
-export type Page = 'home' | 'services' | 'performance' | 'history' | 'contact' | 'dsg-tuning' | 'tuv' | 'terms';
+import homeContent from './content/home.json';  // Importa o JSON real para edição
 
-// Dados editáveis (em breve virão de JSON externo)
-const homeContent = {
-  id: 'home-page', // ID único obrigatório para o objeto inteiro
-  title: 'Bem-vindo ao Zenkai Performance Tuning',
-  description: 'Especialistas em remap, suspensão, escape e performance automóvel em Portugal.',
-  heroImage: '/images/hero-car.jpg' // altera para a tua imagem real em public/
-};
+export type Page = 'home' | 'services' | 'performance' | 'history' | 'contact' | 'dsg-tuning' | 'tuv' | 'terms';
 
 function App() {
   const [currentPage, setCurrentPage] = useState<Page>('home');
@@ -101,21 +95,11 @@ function App() {
                 onOpenCalculator={handleOpenCalculator}
                 onContactClick={() => setCurrentPage('contact')}
                 onQuickEstimate={handleQuickEstimate}
-                // Passa os dados editáveis como props para o Hero (adapta o Hero.tsx depois)
                 title={homeContent.title}
                 description={homeContent.description}
                 heroImage={homeContent.heroImage}
               />
-
-              {/* Exemplo de texto editável fora do Hero */}
-              <h2 data-sb-field-path="title" className="text-5xl text-center text-white mt-10">
-                {homeContent.title}
-              </h2>
-              <p data-sb-field-path="description" className="text-center text-gray-400 max-w-2xl mx-auto mt-4">
-                {homeContent.description}
-              </p>
             </div>
-
             <div className="bg-orange-600 py-4 overflow-hidden whitespace-nowrap relative z-10 border-y border-white/10 shadow-2xl">
               <div className="flex animate-[scroll_500s_linear_infinite] space-x-20 font-sans font-extrabold text-xs md:text-sm tracking-[0.2em] text-white w-max">
                 {tickerItems.map((service, i) => (
@@ -125,7 +109,6 @@ function App() {
                 ))}
               </div>
             </div>
-
             <Services />
             <WhyChooseUs />
             <Testimonials />
