@@ -22,11 +22,16 @@ export default defineConfig({
     },
   },
   server: {
-    port: 5173,           // Alterado de 3000 → 5173 (porta padrão esperada pelo Visual Editor + Vite moderno)
-    strictPort: true,     // Adicionado: impede que o Vite mude automaticamente de porta se 5173 estiver ocupada
+    port: Number(process.env.PORT) || 5173,  // já tens isso – bom para cloud/local
+    strictPort: true,
     host: true,
     hmr: {
-      clientPort: 5173    // Ajuda o Hot Module Replacement a funcionar corretamente através do proxy do Netlify
-    }
+      clientPort: Number(process.env.PORT) || 5173
+    },
+    allowedHosts: [
+      '.netlify.app'  // ← permite todos os subdomains *.netlify.app (inclui o teu devserver-preview--...)
+      // Alternativa mais restrita: 'devserver-preview--zenkai-perfomance-tuning.netlify.app'
+      // Ou para máxima segurança: true (mas não recomendado, expõe a DNS rebinding attacks)
+    ]
   },
 });
