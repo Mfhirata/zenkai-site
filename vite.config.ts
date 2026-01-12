@@ -1,6 +1,5 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
-
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
@@ -23,7 +22,11 @@ export default defineConfig({
     },
   },
   server: {
-    port: 3000,
+    port: 5173,           // Alterado de 3000 → 5173 (porta padrão esperada pelo Visual Editor + Vite moderno)
+    strictPort: true,     // Adicionado: impede que o Vite mude automaticamente de porta se 5173 estiver ocupada
     host: true,
+    hmr: {
+      clientPort: 5173    // Ajuda o Hot Module Replacement a funcionar corretamente através do proxy do Netlify
+    }
   },
 });
