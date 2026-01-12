@@ -1,20 +1,28 @@
 import React, { useState, useEffect } from 'react';
-import Header             from './components/header.tsx';               
-import Hero               from './components/Hero.tsx';                 
-import Services, { services } from './components/Services.tsx';        
-import WhyChooseUs        from './components/WhyChooseUs.tsx';        
-import Testimonials       from './components/Testimonials.tsx';      
+import Header from './components/header.tsx';
+import Hero from './components/Hero.tsx';
+import Services, { services } from './components/Services.tsx';
+import WhyChooseUs from './components/WhyChooseUs.tsx';
+import Testimonials from './components/Testimonials.tsx';
 import PerformanceCalculator from './components/performancecalculator.tsx';
-import TuningChat         from './components/TuningChat.tsx';           
-import Footer             from './components/footer.tsx';               
-import MobileRemapping    from './components/MobileRemapping.tsx';    
-import BackToTop          from './components/BackToTop.tsx';            
-import CookieConsent      from './components/CookieConsent.tsx';        
-import TuvStandards       from './components/TuvStandards.tsx';    
-import Terms              from './components/Terms.tsx';              
-import { useInView }      from './hooks/useinview.ts';                
+import TuningChat from './components/TuningChat.tsx';
+import Footer from './components/footer.tsx';
+import MobileRemapping from './components/MobileRemapping.tsx';
+import BackToTop from './components/BackToTop.tsx';
+import CookieConsent from './components/CookieConsent.tsx';
+import TuvStandards from './components/TuvStandards.tsx';
+import Terms from './components/Terms.tsx';
+import { useInView } from './hooks/useinview.ts';
 
 export type Page = 'home' | 'services' | 'performance' | 'history' | 'contact' | 'dsg-tuning' | 'tuv' | 'terms';
+
+// Dados editáveis (em breve virão de JSON externo)
+const homeContent = {
+  id: 'home-page', // ID único obrigatório para o objeto inteiro
+  title: 'Bem-vindo ao Zenkai Performance Tuning',
+  description: 'Especialistas em remap, suspensão, escape e performance automóvel em Portugal.',
+  heroImage: '/images/hero-car.jpg' // altera para a tua imagem real em public/
+};
 
 function App() {
   const [currentPage, setCurrentPage] = useState<Page>('home');
@@ -41,16 +49,18 @@ function App() {
 
   const renderContent = () => {
     switch (currentPage) {
-      case 'tuv': return <TuvStandards />;
-      case 'terms': return <Terms />;
+      case 'tuv':
+        return <TuvStandards />;
+      case 'terms':
+        return <Terms />;
       case 'dsg-tuning':
         return (
           <div className="pt-20 animate-in fade-in slide-in-from-bottom-4 duration-700 bg-black min-h-screen text-white">
             <section className="py-20 px-4 max-w-7xl mx-auto">
-               <h2 className="text-orange-600 font-display font-bold text-sm mb-4 uppercase tracking-[0.3em]">Transmission Control Unit</h2>
-               <h3 className="text-4xl md:text-7xl font-display font-bold mb-8 uppercase italic leading-none">REPROGRAMAÇÃO <span className="text-orange-500">DSG & TCU</span></h3>
-               <p className="text-gray-400 max-w-2xl mb-10">Otimização de caixas de velocidades automáticas para binários elevados e trocas instantâneas.</p>
-               <button onClick={() => setCurrentPage('contact')} className="px-8 py-4 bg-orange-600 rounded-xl font-bold uppercase tracking-widest text-sm hover:bg-orange-700 transition-all">Solicitar Orçamento</button>
+              <h2 className="text-orange-600 font-display font-bold text-sm mb-4 uppercase tracking-[0.3em]">Transmission Control Unit</h2>
+              <h3 className="text-4xl md:text-7xl font-display font-bold mb-8 uppercase italic leading-none">REPROGRAMAÇÃO <span className="text-orange-500">DSG & TCU</span></h3>
+              <p className="text-gray-400 max-w-2xl mb-10">Otimização de caixas de velocidades automáticas para binários elevados e trocas instantâneas.</p>
+              <button onClick={() => setCurrentPage('contact')} className="px-8 py-4 bg-orange-600 rounded-xl font-bold uppercase tracking-widest text-sm hover:bg-orange-700 transition-all">Solicitar Orçamento</button>
             </section>
           </div>
         );
@@ -85,7 +95,27 @@ function App() {
       default:
         return (
           <>
-            <Hero onOpenCalculator={handleOpenCalculator} onContactClick={() => setCurrentPage('contact')} onQuickEstimate={handleQuickEstimate} />
+            {/* Hero/Home Page com edição inline */}
+            <div data-sb-object-id={homeContent.id}>
+              <Hero
+                onOpenCalculator={handleOpenCalculator}
+                onContactClick={() => setCurrentPage('contact')}
+                onQuickEstimate={handleQuickEstimate}
+                // Passa os dados editáveis como props para o Hero (adapta o Hero.tsx depois)
+                title={homeContent.title}
+                description={homeContent.description}
+                heroImage={homeContent.heroImage}
+              />
+
+              {/* Exemplo de texto editável fora do Hero */}
+              <h2 data-sb-field-path="title" className="text-5xl text-center text-white mt-10">
+                {homeContent.title}
+              </h2>
+              <p data-sb-field-path="description" className="text-center text-gray-400 max-w-2xl mx-auto mt-4">
+                {homeContent.description}
+              </p>
+            </div>
+
             <div className="bg-orange-600 py-4 overflow-hidden whitespace-nowrap relative z-10 border-y border-white/10 shadow-2xl">
               <div className="flex animate-[scroll_500s_linear_infinite] space-x-20 font-sans font-extrabold text-xs md:text-sm tracking-[0.2em] text-white w-max">
                 {tickerItems.map((service, i) => (
@@ -95,6 +125,7 @@ function App() {
                 ))}
               </div>
             </div>
+
             <Services />
             <WhyChooseUs />
             <Testimonials />
