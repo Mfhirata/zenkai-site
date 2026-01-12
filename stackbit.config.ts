@@ -1,4 +1,5 @@
 import { defineStackbitConfig } from '@stackbit/types';
+import { GitContentSource } from '@stackbit/cms-git';  // ← importa isso!
 
 export default defineStackbitConfig({
   stackbitVersion: '~0.7.0',
@@ -8,17 +9,16 @@ export default defineStackbitConfig({
   buildCommand: 'npm run build',
   publishDir: 'dist',
 
-  // Fonte de conteúdo: Git CMS na pasta content/
+  // Content source correto com instância GitContentSource
   contentSources: [
-    {
-      type: 'git-cms',
-      repo: 'Mfhirata/zenkai-site',
-      branch: 'preview',
-      rootPath: 'content'
-    }
+    new GitContentSource({
+      rootPath: __dirname,  // ou 'content' se quiser limitar
+      contentDirs: ['content'],  // pasta com os JSONs
+      // models: [...] – opcional, mas pode mover os models para cá se preferir
+    })
   ],
 
-  // Modelos: define o que é editável no home.json
+  // Mantém os models (podes deixar aqui ou mover para dentro do GitContentSource se quiser)
   models: [
     {
       name: 'home',
@@ -33,12 +33,8 @@ export default defineStackbitConfig({
     }
   ],
 
-  // Liga o model à rota home (/)
   pageModels: ['home'],
   mapModelsToPages: (model) => {
-    if (model.name === 'home') {
-      return { path: '/' };
-    }
-    return null;
+    if (model.name === 'home') return { path: '/' };
   }
 });
